@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const create_food_1 = require("../controllers/foods/create-food");
+const get_foods_1 = require("../controllers/foods/get-foods");
+const get_food_id_1 = require("../controllers/foods/get-food-id");
+const update_food_1 = require("../controllers/foods/update-food");
+const delete_food_1 = require("../controllers/foods/delete-food");
+const foodsRouter = (0, express_1.Router)();
+foodsRouter.post("/", create_food_1.createFood);
+foodsRouter.get("/", get_foods_1.getFoods);
+foodsRouter.get("/:id", get_food_id_1.getFoodById);
+foodsRouter.put("/:id", update_food_1.updateFood);
+foodsRouter.delete("/:id", delete_food_1.deleteFood);
+exports.default = foodsRouter;

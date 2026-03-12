@@ -4,12 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const food_routes_1 = __importDefault(require("./routes/food.routes"));
 const app = (0, express_1.default)();
-const PORT = 3000;
+const port = 3000;
 app.use(express_1.default.json());
-app.get("/", (req, res) => {
-    res.send("Express + TypeScript running 🚀");
-});
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+app.use("/foods", food_routes_1.default);
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
 });

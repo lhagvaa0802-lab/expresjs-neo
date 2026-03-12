@@ -16,10 +16,13 @@ datasource db {
 
 
 
-model User {
-  id       Int      @id @default(autoincrement())
-  email    String   @unique
-  password String
-  age      Int?
-  
+model Food {
+  id          Int      @id @default(autoincrement())
+  foodName    String
+  price       Float
+  image       String
+  ingredients String
+  category    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }

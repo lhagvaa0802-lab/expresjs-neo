@@ -1,86 +1,13 @@
-import express, { Request, Response } from "express";
-import { prisma } from "./lib/prisma";
+import express from "express";
+import foodsRouter from "./routes/food.routes";
+
 const app = express();
-const PORT = 3000;
+const port = 3000;
 
 app.use(express.json());
 
-app.get("/users", async (req: Request, res: Response) => {
-  const users = await prisma.user.findMany();
-  res.json({ users });
-});
+app.use("/foods", foodsRouter);
 
-app.get("/users/:id", async (req: Request, res: Response) => {
-  const { id } = req.params;
-  const users = await prisma.user.findFirst({
-    where: {
-      id: Number(id),
-    },
-  });
-
-  res.json({ users });
-});
-
-app.post("/users", async (req: Request, res: Response) => {
-  try {
-    const { email, password, age } = req.body;
-
-    const user = await prisma.user.create({
-      data: {
-        email,
-        password,
-        age: Number(age),
-      },
-    });
-    console.log(user);
-
-    res.status(200).json(user);
-  } catch (error) {
-    console.log(req.body);
-
-    res.status(400).send(error);
-  }
-});
-
-app.delete("/users/:id", async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
-
-    const user = await prisma.user.delete({
-      where: {
-        id: Number(id),
-      },
-    });
-    console.log(user);
-
-    res.status(200).json(user);
-  } catch (error) {
-    console.log(req.body);
-
-    res.status(400).send(error);
-  }
-});
-app.put("/users/:id", async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
-    const { email, password, age } = req.body;
-
-    const user = await prisma.user.update({
-      where: {
-        id: Number(id),
-      },
-      data: { email: "sgngsngn@g,ail.com" },
-    });
-    console.log(user);
-
-    res.status(200).json(user);
-  } catch (error) {
-    console.log(req.body);
-
-    res.status(400).send(error);
-  }
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });

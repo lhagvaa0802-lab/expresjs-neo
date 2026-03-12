@@ -42,6 +42,45 @@ app.post("/users", async (req: Request, res: Response) => {
   }
 });
 
+app.delete("/users/:id", async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const user = await prisma.user.delete({
+      where: {
+        id: Number(id),
+      },
+    });
+    console.log(user);
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.log(req.body);
+
+    res.status(400).send(error);
+  }
+});
+app.put("/users/:id", async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const { email, password, age } = req.body;
+
+    const user = await prisma.user.update({
+      where: {
+        id: Number(id),
+      },
+      data: { email: "sgngsngn@g,ail.com" },
+    });
+    console.log(user);
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.log(req.body);
+
+    res.status(400).send(error);
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });

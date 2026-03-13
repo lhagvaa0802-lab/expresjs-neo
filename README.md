@@ -28,9 +28,9 @@ These paths are ignored by Git and must be recreated on a new PC:
 
 Run these commands after `npm install`:
 
-```powershell
-cmd /c npx prisma generate
-cmd /c npx prisma migrate deploy
+```bash
+npx prisma generate
+npx prisma migrate deploy
 ```
 
 ## Start The Project

@@ -1,9 +1,0 @@
-ALTER TABLE "Food"
-RENAME COLUMN "name" TO "foodName";
-
-ALTER TABLE "Food"
-ALTER COLUMN "category" SET NOT NULL;
-
-ALTER TABLE "Food"
-ADD COLUMN "image" TEXT NOT NULL DEFAULT '',
-ADD COLUMN "ingredients" TEXT NOT NULL DEFAULT '';

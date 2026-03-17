@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { prisma } from "../../lib/prisma";
 
-export const getUser = async (_req: Request, res: Response) => {
+export const getUsers = async (_req: Request, res: Response) => {
   try {
     const users = await prisma.user.findMany({
       orderBy: {

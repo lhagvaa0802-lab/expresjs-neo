@@ -54,7 +54,7 @@ model FoodCategory {
 
 model FoodOrder {
   id             Int              @id @default(autoincrement())
-  totalprice     String
+  totalPrice     Float
   status         String
   foodOrderItems FoodOrderItems[]
   createdAt      DateTime         @default(now())

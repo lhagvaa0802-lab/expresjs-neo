@@ -1,16 +1,19 @@
 import express from "express";
+import userRouter from "./routes/user.routes";
 import foodsRouter from "./routes/food.routes";
-import usersRouter from "./routes/user.router";
+import categoryRouter from "./routes/category.routes";
+import orderRouter from "./routes/order.routes";
 
 const app = express();
-const port = 3002;
+const port = 3001;
 
 app.use(express.json());
 
+app.use("/users", userRouter);
 app.use("/foods", foodsRouter);
-app.use("/category", foodsRouter);
-app.use("/users", usersRouter);
+app.use("/categories", categoryRouter);
+app.use("/orders", orderRouter);
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server running on http://localhost:${port}`);
 });

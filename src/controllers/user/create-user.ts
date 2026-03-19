@@ -4,13 +4,14 @@ import bcrypt from "bcrypt";
 
 export const createUser = async (req: Request, res: Response) => {
   try {
-    const { email, password, age, phoneNumber } = req.body;
+    const { email, password, age, phoneNumber, role } = req.body;
 
-    if (!email || password === undefined || !age || !phoneNumber) {
+    if (!email || !password || age === undefined || !phoneNumber) {
       return res.status(400).json({
-        message: "email, password,and age, phoneNumber are required",
+        message: "email, password, age, phoneNumber are required",
       });
     }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await prisma.user.create({
@@ -19,12 +20,21 @@ export const createUser = async (req: Request, res: Response) => {
         password: hashedPassword,
         age,
         phoneNumber,
+        role,
       },
     });
 
     return res.status(201).json({
       message: "User created successfully",
-      user,
+      user: {
+        id: user.id,
+        email: user.email,
+        age: user.age,
+        phoneNumber: user.phoneNumber,
+        role: user.role,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      },
     });
   } catch (error) {
     console.log(error);

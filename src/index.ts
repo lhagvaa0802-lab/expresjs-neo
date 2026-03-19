@@ -14,7 +14,7 @@ app.use("/users", userRouter);
 app.use("/foods", foodsRouter);
 app.use("/categories", categoryRouter);
 app.use("/orders", orderRouter);
-app.use("/users", loginRouter);
+app.use("/auth", loginRouter);
 
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);

@@ -48,7 +48,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.defineExtension = exports.QueryMode = exports.SortOrder = exports.FoodScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.prismaVersion = exports.getExtensionContext = exports.Decimal = exports.Sql = exports.raw = exports.join = exports.empty = exports.sql = exports.PrismaClientValidationError = exports.PrismaClientInitializationError = exports.PrismaClientRustPanicError = exports.PrismaClientUnknownRequestError = exports.PrismaClientKnownRequestError = void 0;
+exports.defineExtension = exports.NullsOrder = exports.QueryMode = exports.SortOrder = exports.FoodOrderItemsScalarFieldEnum = exports.FoodOrderScalarFieldEnum = exports.FoodCategoryScalarFieldEnum = exports.FoodScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.prismaVersion = exports.getExtensionContext = exports.Decimal = exports.Sql = exports.raw = exports.join = exports.empty = exports.sql = exports.PrismaClientValidationError = exports.PrismaClientInitializationError = exports.PrismaClientRustPanicError = exports.PrismaClientUnknownRequestError = exports.PrismaClientKnownRequestError = void 0;
 const runtime = __importStar(require("@prisma/client/runtime/library"));
 /**
  * Prisma Errors
@@ -103,7 +103,11 @@ exports.JsonNull = runtime.objectEnumValues.instances.JsonNull;
  */
 exports.AnyNull = runtime.objectEnumValues.instances.AnyNull;
 exports.ModelName = {
-    Food: 'Food'
+    User: 'User',
+    Food: 'Food',
+    FoodCategory: 'FoodCategory',
+    FoodOrder: 'FoodOrder',
+    FoodOrderItems: 'FoodOrderItems'
 };
 /**
  * Enums
@@ -114,13 +118,44 @@ exports.TransactionIsolationLevel = runtime.makeStrictEnum({
     RepeatableRead: 'RepeatableRead',
     Serializable: 'Serializable'
 });
+exports.UserScalarFieldEnum = {
+    id: 'id',
+    email: 'email',
+    password: 'password',
+    age: 'age',
+    phoneNumber: 'phoneNumber',
+    role: 'role',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
 exports.FoodScalarFieldEnum = {
     id: 'id',
     foodName: 'foodName',
     price: 'price',
     image: 'image',
     ingredients: 'ingredients',
-    category: 'category',
+    categoryId: 'categoryId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
+exports.FoodCategoryScalarFieldEnum = {
+    id: 'id',
+    categoryName: 'categoryName',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
+exports.FoodOrderScalarFieldEnum = {
+    id: 'id',
+    totalPrice: 'totalPrice',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+};
+exports.FoodOrderItemsScalarFieldEnum = {
+    id: 'id',
+    quantity: 'quantity',
+    foodId: 'foodId',
+    foodOrderId: 'foodOrderId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
 };
@@ -131,5 +166,9 @@ exports.SortOrder = {
 exports.QueryMode = {
     default: 'default',
     insensitive: 'insensitive'
+};
+exports.NullsOrder = {
+    first: 'first',
+    last: 'last'
 };
 exports.defineExtension = runtime.Extensions.defineExtension;

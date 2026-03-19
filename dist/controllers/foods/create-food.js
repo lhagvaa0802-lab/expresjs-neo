@@ -4,14 +4,10 @@ exports.createFood = void 0;
 const prisma_1 = require("../../lib/prisma");
 const createFood = async (req, res) => {
     try {
-        const { foodName, price, image, ingredients, category } = req.body;
-        if (!foodName ||
-            price === undefined ||
-            !image ||
-            !ingredients ||
-            !category) {
+        const { foodName, price, image, ingredients, categoryId } = req.body;
+        if (!foodName || !price || !image || !ingredients || !categoryId) {
             return res.status(400).json({
-                message: "foodName, price, image, ingredients, and category are required",
+                message: "foodName, price, image, ingredients, and categoryId are required",
             });
         }
         const food = await prisma_1.prisma.food.create({
@@ -20,16 +16,16 @@ const createFood = async (req, res) => {
                 price: Number(price),
                 image,
                 ingredients,
-                category,
+                categoryId: Number(categoryId),
             },
         });
-        return res.status(201).json({
+        res.status(201).json({
             message: "Food created successfully",
             food,
         });
     }
     catch (error) {
-        return res.status(500).json({
+        res.status(500).json({
             message: "Failed to create food",
             error,
         });

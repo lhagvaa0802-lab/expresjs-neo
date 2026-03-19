@@ -5,7 +5,13 @@ export const createFood = async (req: Request, res: Response) => {
   try {
     const { foodName, price, image, ingredients, categoryId } = req.body;
 
-    if (!foodName || !price || !image || !ingredients || !categoryId) {
+    if (
+      !foodName ||
+      price === undefined ||
+      !image ||
+      !ingredients ||
+      categoryId === undefined
+    ) {
       return res.status(400).json({
         message:
           "foodName, price, image, ingredients, and categoryId are required",
@@ -22,12 +28,12 @@ export const createFood = async (req: Request, res: Response) => {
       },
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       message: "Food created successfully",
       food,
     });
   } catch (error) {
-    res.status(500).json({
+    return res.status(500).json({
       message: "Failed to create food",
       error,
     });

@@ -5,12 +5,6 @@ export const createOrder = async (req: Request, res: Response) => {
   try {
     const { status, items } = req.body;
 
-    // items example:
-    // [
-    //   { foodId: 1, quantity: 2 },
-    //   { foodId: 3, quantity: 1 }
-    // ]
-
     const totalPriceValue = await calculateTotalPrice(items);
 
     const order = await prisma.foodOrder.create({

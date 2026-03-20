@@ -44,7 +44,7 @@ export const login = async (req: Request, res: Response) => {
         role: user.role,
       },
       process.env.JSONWEB,
-      { expiresIn: "1h" },
+      { expiresIn: "40h" },
     );
 
     return res.status(200).json({
